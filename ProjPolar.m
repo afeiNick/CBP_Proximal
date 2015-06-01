@@ -22,10 +22,14 @@ for i = 1 : size(u,1)
         elseif (z(i) < 0)
             theta_proj = -theta;
         elseif (z(i) == 0)                  % when z(i) = 0, we pick either endpoint at random
-            if rand <= 0.5
-                theta_proj = theta;
+            if (y(i) == 0)
+                theta_proj = unifrnd(-theta,theta);
             else
-                theta_proj = -theta;
+                if rand <= 0.5
+                    theta_proj = theta;
+                else
+                    theta_proj = -theta;
+                end
             end
         end
         % now we project onto the line specified by [1/r cos(theta_proj)
